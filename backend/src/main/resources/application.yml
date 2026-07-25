@@ -1,0 +1,111 @@
+spring:
+ application:
+  name: genesis-flota
+
+ # Perfil activo
+ profiles:
+  active: ${SPRING_PROFILES_ACTIVE:dev}
+
+ # Configuración R2DBC para SQL Server
+ # Los datos sensibles deben venir de variables de entorno o de un archivo local no versionado.
+ r2dbc:
+  url: r2dbc:sqlserver://${DB_HOST:localhost}:${DB_PORT:1433}/${DB_NAME:TransporteCargaPesada}?trustServerCertificate=true&encrypt=false
+  username: ${DB_USER:usr-desarrollo}
+  password: ${DB_PASS:}
+  pool:
+   enabled: true
+   initial-size: 10
+   max-size: 50
+   max-idle-time: 30m
+   validation-query: SELECT 1
+
+ # Deshabilitar auto-DDL (CRÍTICO: BD compartida con .NET)
+ sql:
+  init:
+   mode: never
+
+ data:
+  r2dbc:
+   repositories:
+    enabled: true
+
+ # Configuración WebFlux
+ # webflux:
+ # base-path: /api/v1
+
+ # Jackson
+ jackson:
+  serialization:
+   fail-on-empty-beans: false
+   indent-output: false
+  deserialization:
+   fail-on-unknown-properties: false
+  default-property-inclusion: non_null
+  date-format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+  time-zone: UTC
+
+# ============================================
+# Server
+# ============================================
+server:
+ port: ${SERVER_PORT:7136}
+ shutdown: graceful
+ netty:
+  connection-timeout: 30s
+
+# ============================================
+# Actuator
+# ============================================
+management:
+ endpoints:
+  web:
+   exposure:
+    include: health,info,metrics
+ endpoint:
+  health:
+   show-details: when-authorized
+   probes:
+    enabled: true
+
+# ============================================
+# SpringDoc OpenAPI
+# ============================================
+springdoc:
+ swagger-ui:
+  path: /swagger-ui.html
+  enabled: true
+ api-docs:
+  path: /v3/api-docs
+  enabled: true
+
+# ============================================
+# App Custom Properties
+# ============================================
+app:
+ jwt:
+  secret: ${JWT_SECRET:change-me-in-production}
+  expiration-ms: ${JWT_EXPIRATION_MS:3600000}
+  issuer: ${JWT_ISSUER:genesis-flota-api}
+ security:
+  bcrypt:
+   rounds: 12
+  max-failed-attempts: 5
+  lock-duration-minutes: 30
+  password:
+   min-length: 8
+   require-uppercase: true
+   require-lowercase: true
+   require-digit: true
+   require-special: true
+
+# ============================================
+# Logging
+# ============================================
+logging:
+ level:
+  com.genesis.flota: DEBUG
+  org.springframework.r2dbc: DEBUG
+  org.springframework.security: DEBUG
+  io.r2dbc.mssql: INFO
+ pattern:
+  console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

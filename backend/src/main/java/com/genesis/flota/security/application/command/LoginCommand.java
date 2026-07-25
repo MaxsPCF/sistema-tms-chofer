@@ -1,0 +1,11 @@
+package com.genesis.flota.security.application.command;
+
+import jakarta.validation.constraints.NotBlank;
+
+public record LoginCommand(
+        @NotBlank(message = "El email de usuario es requerido")
+        String email,
+
+        @NotBlank(message = "La contraseña es requerida")
+        String password
+) {}

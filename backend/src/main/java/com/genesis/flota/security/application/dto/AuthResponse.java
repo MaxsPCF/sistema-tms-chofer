@@ -1,0 +1,18 @@
+package com.genesis.flota.security.application.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@JsonPropertyOrder({"token", "expiracion", "usuario", "menus"})
+public record AuthResponse(
+        String token,
+
+        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'")
+        LocalDateTime expiracion,
+
+        UsuarioDto usuario,
+        List<MenuTreeDto> menus
+) {}
