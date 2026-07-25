@@ -12,10 +12,14 @@ API REST para el Sistema de Gestión de Flota de Transporte.
 
 Arquitectura Hexagonal (Ports & Adapters) + DDD + CQRS
 
+```
 📦 bounded-contexts/
 ├── 🔐 security/ # Autenticación, JWT, RBAC, Menús
 ├── 🚛 operations/ # Viajes, Tracking GPS, Órdenes de Trabajo
 └── 🧩 shared/ # Kernel compartido (DDD base, utilidades)
+```
+
+---
 
 ### Patrones Implementados
 
