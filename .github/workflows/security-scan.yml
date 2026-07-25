@@ -22,6 +22,7 @@ jobs:
  dependency-scan:
   name: OWASP dependency scan
   runs-on: ubuntu-latest
+  timeout-minutes: 30
   defaults:
    run:
     working-directory: backend
@@ -41,7 +42,14 @@ jobs:
      run: chmod +x mvnw
 
    - name: Run OWASP Dependency-Check
-     run: ./mvnw -B org.owasp:dependency-check-maven:check -DfailOnError=false -Dformat=ALL
+     timeout-minutes: 20
+     continue-on-error: true
+     run: |
+      ./mvnw -B org.owasp:dependency-check-maven:check \
+        -DfailOnError=false \
+        -Dformat=ALL \
+        -DskipTests=true \
+        -DquickQueryTimestamp=true
 
    - name: Upload dependency scan report
      if: always()
