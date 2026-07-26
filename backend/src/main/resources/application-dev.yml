@@ -1,21 +1,1 @@
-spring:
- r2dbc:
-  url: r2dbc:sqlserver://${DB_HOST:localhost}:${DB_PORT:1433}/${DB_NAME:TransporteCargaPesada}?trustServerCertificate=true&encrypt=false
-  username: ${DB_USER:usr-desarrollo}
-  password: ${DB_PASS:}
-  pool:
-   enabled: ${DB_POOL_ENABLED:false}
-
-app:
- jwt:
-  secret: ${JWT_SECRET:change-me-in-production}
-  expiration-ms: ${JWT_EXPIRATION_MS:3600000}
-  issuer: ${JWT_ISSUER:genesis-flota-api}
-
-logging:
- level:
-  com.genesis.flota: DEBUG
-  io.r2dbc.mssql: INFO
-
-server:
- port: ${SERVER_PORT:7136}
+spring: r2dbc:  host: localhost  port: 1433  database: TransporteCargaPesada  username: usr-desarrollo  password: "123456"  pool:   enabled: falseapp: jwt:  secret: ${JWT_SECRET:TMSChoferTransportesGenesisSuperSecretKey2026}  expiration-ms: ${JWT_EXPIRATION_MS:3600000}  issuer: ${JWT_ISSUER:api-conductor-transporte-api}logging: level:  com.tms.appconductor: DEBUG  io.r2dbc.mssql: INFOserver: port: ${SERVER_PORT:7136}

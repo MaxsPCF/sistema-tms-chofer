@@ -12,10 +12,14 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.genesis</groupId>
-    <artifactId>genesis-flota</artifactId>
+    <groupId>com.tms.appconductor</groupId>
+    <artifactId>api-conductor-transporte</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Genesis Flota API</name>
+    <name>API Conductor Transporte Carga Pesada :: Parent</name>
+    <description>
+        API REST modular (Hexagonal + DDD + CQRS) para el sistema de Transporte de Carga Pesada - Conductor.
+        Base de datos SQL Server 2025 compartida con una aplicación .NET 10 (ddl-auto=none).
+    </description>
 
     <properties>
         <java.version>25</java.version>

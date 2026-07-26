@@ -1,6 +1,6 @@
-# Genesis Flota API 🚛
+# TMS-Conductor - Transporte Carga Pesada :: API REST 🚛
 
-API REST para el Sistema de Gestión de Flota de Transporte.
+API REST para el Sistema de Gestión de Conductor de Transporte.
 
 [![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.7-brightgreen.svg)](https://spring.io/projects/spring-boot)
@@ -80,8 +80,8 @@ Esto permite que ambos sistemas (.NET y Java) validen contraseñas contra los mi
 
 ```
 backend/
-├── src/main/java/com/genesis/flota/
-│ ├── GenesisFlotaApplication.java
+├── src/main/java/com/tms/appconductor/
+│ ├── ApiConductorTransporteApplication.java
 │ ├── shared/ # Kernel compartido
 │ │ ├── domain/
 │ │ │ ├── model/ # BaseEntity, AggregateRoot, ValueObject
@@ -208,13 +208,13 @@ docker run -d \
 
 ### Módulo Seguridad
 
-| Funcionalidad              | Estado           |
-| -------------------------- | ---------------- |
-| Login con JWT              | ✅ Completado    |
-| Compatibilidad BCrypt .NET | ✅ Completado    |
-| RBAC                       | 🚧 En desarrollo |
-| Menús dinámicos            | 🚧 En desarrollo |
-| Refresh Token              | 🚧 En desarrollo |
+| Funcionalidad              | Estado        |
+| -------------------------- | ------------- |
+| Login con JWT              | ✅ Completado |
+| Compatibilidad BCrypt .NET | ✅ Completado |
+| RBAC                       | ✅ Completado |
+| Menús dinámicos            | ✅ Completado |
+| Refresh Token              | ✅ Completado |
 
 ### Módulo Operaciones
 
